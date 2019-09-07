@@ -1,17 +1,14 @@
 package com.api.wechat.controller;
 
-import com.api.util.http.Httpclient;
-import net.sf.json.JSONObject;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.UUID;
+
 
 @Controller
 @RequestMapping("/wei")
@@ -32,8 +29,10 @@ public class WeiController {
     //  1.4、 state：防止csrf攻击，后台自动生成
     //以上参数正确后，会重定向到二唯码页面（有待实验确认证实？）
     @RequestMapping("/get")
+    @ResponseBody
     public String openWechatLogin() {
         String state = UUID.randomUUID().toString().replace("-", "");
+
         String param = "appid=" + APPID +
                 "&redirect_uri=" + URLEncoder.encode(REDIRECT_URI) +
                 "&response_type=code" +
@@ -41,7 +40,7 @@ public class WeiController {
                 "&state=" + state +
                 "#wechat_redirect";
         System.out.println(WECHAT_URL_LOGIN + param);
-        return "redirect:" + WECHAT_URL_LOGIN + param;
+        return "欢迎来到微信扫码页面：" + WECHAT_URL_LOGIN + param;
 
     }
 

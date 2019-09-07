@@ -15,5 +15,21 @@ LianBaoUrl:
   #  神州联保url
   ShenZhou: http://ntest.szlb.cc/api/papi.php/
 
+#  快递鸟
+KDNiao:
+  EBusinessID: 1575645
+  APIKey: 6709bebc-7ac3-4208-a5fc-80fef03bd36c
+#  url: http://api.kdniao.com/api/OOrderService  #  正式环境
+  url: http://testapi.kdniao.com:8081/api/oorderservice  #  测试环境
+#  url: http://sandboxapi.kdniao.com:8080/kdniaosandbox/gateway/exterfaceInvoke.json  #  沙箱测试环境
 
 
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/usertest?serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+
+mybatis:
+  mapper-locations:

@@ -178,5 +178,10 @@ public class RSA {
     }
 
 
+    public static void main(String[] args) {
+        String str = createStr();
+        System.out.println(str);
+    }
+
 
 }
