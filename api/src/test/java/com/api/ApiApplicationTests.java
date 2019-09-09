@@ -145,8 +145,7 @@ public class ApiApplicationTests {
 
     @Test
     public void contextLoads() {
-        String forObject = restTemplate.getForObject("http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2018/index.html", String.class);
-        System.out.println(forObject);
+
     }
 
 }

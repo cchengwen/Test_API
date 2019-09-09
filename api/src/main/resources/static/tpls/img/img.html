@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/js/bootstrap/bootstrap.viewer.min.css" rel="stylesheet" >
+</head>
+<body>
+<div>
+    <div>
+        <img src="/imgages/8.jpg" width="200" class="viewer" />
+    </div>
+</div>
+
+<script src="/js/jquery-3.4.1.js"></script>
+<script src="/js/bootstrap/bootstrap.js"></script>
+<script src="/js/bootstrap/bootstrap.viewer.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.viewer').bootstrapViewer();//The default image source file path is the src attribute of the img tag.
+    })
+</script>
+</body>
+</html>
