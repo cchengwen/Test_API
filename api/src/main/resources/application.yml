@@ -1,3 +1,13 @@
+#    引入别的yml
+spring:
+  profiles:
+    include: test
+
+
+mybatis:
+  mapper-locations:
+
+
 #  读取文件
 fileClass:
   filePath:
@@ -9,6 +19,10 @@ fileClass:
     privateKey: MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAOIPa41P12UupJqnugyurzdJW8oWOjy3mUHHP4Hc/hwGfDBb0JnDdQea0j5uxAz9EmRa9c3wCy4Vq1HEWI25S/7l/xxs0AFXN/8NoS3tJz8jTHHk5d4ljwUoCB2NhjA/x2kKuTzw3FYGeD20tKSvmIn9e0CQ6CL/DtWzGvHHoSXlAgMBAAECgYEAvDzy5hzR02NflZiNB/p91J+1WzXfEKghafCsJUsMHfIYf3w025UyYj69S1eY0Of65K4JeI6mAJ3ypofE5V6is/HFu5X2HuZ67Dwm4QOJFORft3FVfc2AaYPQr7ZmhkD6WDTsoyIFIEd3H0wcvOmED39K/3cANzlg3zaLH8bDfgECQQD007UQFjHszPTEIroLLsuHta0CJIMxII4EcLYrZKuBUGhtRWoeHcTR8FAbMFcuC4AQ0nUujCgjWtVDmGYvD9WhAkEA7GB2aZvbx0rYyp1VRFdlfYHPcfDGx1SrUjqZK0XOMH36JRN847S+JIclVTvUoqCuHT820ZOC8o625sOlbOghxQJBAIW3Q0L//FCLOHwPQ3FsI3mBfnaXHpgsYaSHMtfMaed81SwpJ2Y/eAn5qKbQ5iyd11pYt+uuXRXCPIxopha6HUECQGUIZhSF1c69IySXUxa+9FZM4colzBDvE7s16LoiQBth/UVTqxH48zzRtxdTV3ObklBV8KxrjJD4hxzjixWdsrECQDz0O619OiE7ecP2ENcSG1bmdzGmnC1atMBnEUhmEloxYrRVMdCN8dJRiWJ7Bp+kp749Wtu9gMp0VT1YfMuURCg=
 #    publicKey2: C:\Users\ZJY\Desktop\key\key\publicKey.txt
 #    privateKey: C:\Users\ZJY\Desktop\key\key\privateKey.txt
+
+
+
+
 
 
 LianBaoUrl:
@@ -24,12 +38,6 @@ KDNiao:
 #  url: http://sandboxapi.kdniao.com:8080/kdniaosandbox/gateway/exterfaceInvoke.json  #  沙箱测试环境
 
 
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/usertest?serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: root
 
-mybatis:
-  mapper-locations:
+
+

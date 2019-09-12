@@ -10,4 +10,10 @@ public class RestController {
     public String electronIndex(){
         return "/tpls/kdniao/ele.html";
     }
+
+    //   数据库安装
+    @GetMapping("/soft")
+    public String softwareInstall(){
+        return "/tpls/software_install/datasource_install.html";
+    }
 }

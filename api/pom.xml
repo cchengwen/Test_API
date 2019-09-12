@@ -97,6 +97,12 @@
             <version>1.0</version>
         </dependency>
 
+        <!--操作yml相关jar包-->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+        </dependency>
+
 
     </dependencies>
 
