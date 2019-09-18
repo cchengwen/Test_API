@@ -16,4 +16,10 @@ public class RestController {
     public String softwareInstall(){
         return "/tpls/software_install/datasource_install.html";
     }
+
+    //  微信支付页面
+    @GetMapping("/wxpay")
+    public String wxpay(){
+        return "/tpls/weixinpay/pay.html";
+    }
 }

@@ -103,6 +103,20 @@
             <artifactId>snakeyaml</artifactId>
         </dependency>
 
+        <!-- 读取解析xml相关jar包 -->
+        <dependency>
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+        <!-- 二唯码工具jar包 -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
 
     </dependencies>
 

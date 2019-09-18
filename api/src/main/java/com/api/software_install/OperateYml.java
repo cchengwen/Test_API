@@ -49,8 +49,9 @@ public class OperateYml {
         sources.put("password", sourceData.getPassword());
         datasource.put("datasource", sources);
         dataMap.put("spring", datasource);
+        //  写入到配置文件中
         yaml.dump(dataMap, new FileWriter(propertyPath));
-
+        //  创建数据库
         UpdateDatabase.updatedatabase(sourceData.getDataSourceName());
     }
 

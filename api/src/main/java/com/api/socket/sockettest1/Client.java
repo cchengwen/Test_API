@@ -13,7 +13,7 @@ public class Client {
         try {
             while (true) {
                 //  连接服务器
-                socket = new Socket("localhost", 8088);
+                socket = new Socket("localhost", 8080);
 
                 //  接收输出流中的数据
                 out = new ObjectOutputStream(socket.getOutputStream());

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微信扫码支付案例</title>
+</head>
+<body>
+<div>
+    <h3>可乐特价：0.01元/罐</h3>
+    <input id="pay_submit" type="button" value="微信支付"/>
+</div>
+
+<script src="/js/jquery-3.4.1.js"></script>
+<script src="/js/layui/layui.js"></script>
+<script>
+    $(function () {
+        $('#pay_submit').click(function () {
+            buy("3333", '001');
+        });
+    });
+
+    //  购买
+    function buy(userId, productId) {
+        //  使用layui组件
+        layui.use('layer', function () {
+            //  打开付费二唯码
+            let layer = layui.layer.open({
+                area: ['300px', '300px'],
+                type: 2,
+                closeBtn: false,
+                title: false,
+                shift: 3,
+                shadeClose: true,  //  设置此属性为固定窗口，类似于给弹窗设置了static
+                content: '/wxpay/getcode?userId=' + userId + '&productId=' + productId
+            });
+            //重复执行某个方法
+        });
+    }
+
+</script>
+</body>
+</html>

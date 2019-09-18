@@ -1,7 +1,6 @@
 package com.api.software_install;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -45,7 +44,7 @@ public class UpdateDatabase {
             // 创建数据库链接并执行SQL脚本
             conn = getConn();
             conn.setAutoCommit(false);  //  关闭自动提交
-//            System.out.println(sqlList);
+            System.out.println(sqlList);
             statement = conn.createStatement();
             for (String sql : sqlList) {
                 statement.addBatch(sql);
