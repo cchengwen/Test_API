@@ -1,5 +1,7 @@
 package com.api.util.response;
 
+import java.io.ObjectInputStream;
+
 /**
  *      json  数据响应结果集
  */
@@ -15,6 +17,10 @@ public class ResponseData {
 
     public static ResponseData getSuccess(Object data){
         return new ResponseData(SUCCESS_STATUS, SUCCESS_MESSAGE, data);
+    }
+
+    public static ResponseData getSuccessMsg(String message, Object data){
+        return new ResponseData(SUCCESS_STATUS, message, data);
     }
 
 

@@ -1,5 +1,10 @@
 package com.api.software_install;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,10 +18,16 @@ import java.util.Properties;
  * 读取sql脚本 & 更新数据库名
  */
 public class UpdateDatabase {
-    //  默认数据库url
-    private static String DEFAULT_DATABASE_URL = "jdbc:mysql://localhost:3306/sakila?serverTimezone=GMT%2b8";
 
-    public static boolean updatedatabase(String name) {
+    private static Logger logger = LoggerFactory.getLogger(UpdateDatabase.class);
+
+    /**
+     *    读取sql脚本，更新数据库操作
+     * @param name  数据库表名
+     * @param dbIP  数据库地址
+     * @return
+     */
+    public static boolean updatedatabase(String name, String dbIP) {
         Connection conn = null;
         Statement statement = null;
         boolean success = false;
@@ -24,7 +35,7 @@ public class UpdateDatabase {
         try {
             List<String> sqlList = new ArrayList<>();
             //  读取sql脚本
-            InputStream sqlFile = new FileInputStream("E:\\space\\Test\\api\\src\\main\\resources\\sql\\shiro.sql");
+            InputStream sqlFile = new FileInputStream(new File("").getCanonicalPath()+"\\src\\main\\resources\\sql\\shiro.sql");
 
             StringBuilder sqlSb = new StringBuilder();
             byte[] b = new byte[1024];
@@ -42,9 +53,8 @@ public class UpdateDatabase {
                 }
             }
             // 创建数据库链接并执行SQL脚本
-            conn = getConn();
+            conn = Dbdriver.getConnection(dbIP);
             conn.setAutoCommit(false);  //  关闭自动提交
-            System.out.println(sqlList);
             statement = conn.createStatement();
             for (String sql : sqlList) {
                 statement.addBatch(sql);
@@ -52,7 +62,9 @@ public class UpdateDatabase {
             statement.executeBatch();  //  批量执行
             success = true;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("读取sql脚本，更新数据库异常：e = [{}]", e.getMessage());
+            //  设置手动回滚
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             // 如果报错，则删除D
 
         } finally {
@@ -74,51 +86,4 @@ public class UpdateDatabase {
         return success;
     }
 
-
-    /**
-     *   操作数据库
-     * @return
-     * @throws ClassNotFoundException
-     * @throws IOException
-     * @throws SQLException
-     */
-    private static Connection getConn() throws ClassNotFoundException, IOException {
-        Connection conn = null;
-        Properties properties = new Properties();
-        //  读取配置文件
-        InputStream in = new FileInputStream("E:\\space\\Test\\api\\src\\main\\resources\\application-test.yml");
-        properties.load(in);
-        Class.forName(properties.getProperty("driver-class-name"));
-        String url = properties.getProperty("url");
-        String username = properties.getProperty("username");
-        String password = properties.getProperty("password");
-        try {
-            //  创建连接
-            conn = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            // 如果异常则执行, 数据库为本身已经存在的
-            Statement st = null;
-            try {
-                //  创建连接
-                conn = DriverManager.getConnection(DEFAULT_DATABASE_URL, username, password);
-//                System.out.println(url.split("\\?")[0].split("/")[3]);
-                st = conn.createStatement();
-                //  执行创建数据库语句
-                st.execute("CREATE DATABASE "+url.split("\\?")[0].split("/")[3]);
-                //  把新建的数据库连接返回
-                conn = DriverManager.getConnection(url, username, password);
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }finally {
-                if (st != null){
-                    try {
-                        st.close();
-                    } catch (SQLException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        }
-        return conn;
-    }
 }

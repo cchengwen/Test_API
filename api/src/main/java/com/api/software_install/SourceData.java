@@ -2,12 +2,12 @@ package com.api.software_install;
 
 public class SourceData {
     private Integer port;  //  服务器端口号
+    private String dbIP;  //  数据库地址
     private String engine;  //  数据库引擎
-    private String dataSourceIP;  //  数据库地址
     private String username;  //  数据库用户名
     private String password;   //   数据库密码
-    private String dataSourceName;  //  数据库名称
-    private String dataSourceMethod;  //  数据库操作方法
+    private String dbName;  //  数据库名称
+    private String dbType;  //  数据库类型
 
     public Integer getPort() {
         return port;
@@ -17,20 +17,20 @@ public class SourceData {
         this.port = port;
     }
 
+    public String getDbIP() {
+        return dbIP;
+    }
+
+    public void setDbIP(String dbIP) {
+        this.dbIP = dbIP;
+    }
+
     public String getEngine() {
         return engine;
     }
 
     public void setEngine(String engine) {
         this.engine = engine;
-    }
-
-    public String getDataSourceIP() {
-        return dataSourceIP;
-    }
-
-    public void setDataSourceIP(String dataSourceIP) {
-        this.dataSourceIP = dataSourceIP;
     }
 
     public String getUsername() {
@@ -49,32 +49,32 @@ public class SourceData {
         this.password = password;
     }
 
-    public String getDataSourceName() {
-        return dataSourceName;
+    public String getDbName() {
+        return dbName;
     }
 
-    public void setDataSourceName(String dataSourceName) {
-        this.dataSourceName = dataSourceName;
+    public void setDbName(String dbName) {
+        this.dbName = dbName;
     }
 
-    public String getDataSourceMethod() {
-        return dataSourceMethod;
+    public String getDbType() {
+        return dbType;
     }
 
-    public void setDataSourceMethod(String dataSourceMethod) {
-        this.dataSourceMethod = dataSourceMethod;
+    public void setDbType(String dbType) {
+        this.dbType = dbType;
     }
 
     @Override
     public String toString() {
         return "SourceData{" +
                 "port=" + port +
+                ", dbIP='" + dbIP + '\'' +
                 ", engine='" + engine + '\'' +
-                ", dataSourceIP='" + dataSourceIP + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", dataSourceName='" + dataSourceName + '\'' +
-                ", dataSourceMethod='" + dataSourceMethod + '\'' +
+                ", dbName='" + dbName + '\'' +
+                ", dbType='" + dbType + '\'' +
                 '}';
     }
 }

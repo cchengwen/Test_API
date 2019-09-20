@@ -10,7 +10,8 @@
         <span>数据库操作方法：</span>
         <span>
             <select id="datebase">
-                <option value="mysql">mysql(推荐)</option>
+                <option value="mysql" selected>mysql(推荐)</option>
+                <option value="oracle">oracle</option>
             </select>
         </span>
     </div>
@@ -18,7 +19,9 @@
         <span><span style="color: red">*</span>mysql数据库引擎：</span>
         <span>
             <select id="baseDB">
-                <option value="MylSAM">MylSAM</option>
+                <option value="MylSAM" selected>MylSAM</option>
+                <option value="InnoDB">InnoDB</option>
+                <option value="CSV">CSV</option>
             </select>
         </span>
     </div>
@@ -46,5 +49,66 @@
         <button id="btn">提交</button>
     </div>
 </div>
+
+<script src="/js/jquery-3.4.1.js"></script>
+<script src="/js/layui/layui.js"></script>
+<script>
+    $('#btn').click(function () {
+        layui.use('layer', function () {
+            let layer = layui.layer;
+            let dataSourceType = $('#datebase').find('option:selected').val();
+            let engine = $('#baseDB').find('option:selected').val();
+
+            let baseIP = $('#baseIP').val();
+            if (baseIP == '' || baseIP == undefined) {
+                layer.msg('数据库地址不为能空', {icon: 2})
+                return;
+            }
+            let port = $('#port').val();
+            if (!/^[0-9]{4,}$/.test(port)) {
+                layer.msg('请输入正确格式的服务器端口，如：8081', {icon: 2})
+                return;
+            }
+            let username = $('#username').val();
+            if (username == '' || username == undefined) {
+                layer.msg('数据库用户名不为能空', {icon: 2})
+                return;
+            }
+            let pwd = $('#pwd').val();
+            if (pwd == '' || pwd == undefined) {
+                layer.msg('数据库密码不为能空', {icon: 2})
+                return;
+            }
+            let mysqlName = $('#mysqlName').val();
+            if (mysqlName == '' || mysqlName == undefined) {
+                layer.msg('数据库名不为能空', {icon: 2})
+                return;
+            }
+            let sourceData = {
+                'port': port,
+                'engine': engine,
+                'dbType': dataSourceType,
+                'dbName': mysqlName,
+                'dbIP': baseIP,
+                'username': username,
+                'password': pwd
+            };
+            $.ajax({
+                url: '/software/update',
+                type: 'POST',
+                dataType: 'JSON',
+                contentType: 'application/json; character=UTF-8',
+                data: JSON.stringify(sourceData),
+                success: function (res) {
+                    if (res.code == 0) {
+                        layui.layer.msg(res.message);
+                    } else {
+                        layui.layer.msg(res.message);
+                    }
+                }
+            })
+        });
+    });
+</script>
 </body>
 </html>
